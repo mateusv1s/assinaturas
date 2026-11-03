@@ -4,9 +4,11 @@ import gestao_de_assinaturas.mateus.dto.request.UserRequest;
 import gestao_de_assinaturas.mateus.dto.response.UserResponse;
 import gestao_de_assinaturas.mateus.entity.User;
 import gestao_de_assinaturas.mateus.enums.UserRole;
+import gestao_de_assinaturas.mateus.exceptions.EmailAlreadyExistsException;
 import gestao_de_assinaturas.mateus.repository.UserRepository;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
+import jakarta.validation.constraints.Email;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -20,6 +22,9 @@ public class UserService {
 
     @Transactional
     public UserResponse createUser (UserRequest request) {
+        if (userRepository.existsByEmailIgnoreCase(request.email())) {
+            throw new EmailAlreadyExistsException("Email already registred!");
+        }
 
         User user = new User();
         user.setName(request.name());
