@@ -4,7 +4,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 @RestControllerAdvice
 public class GlobalHandlerException extends RuntimeException {
-    public GlobalHandlerException(String message) {
-        super(message);
+    public GlobalHandlerException() {
+        return;
     }
 }

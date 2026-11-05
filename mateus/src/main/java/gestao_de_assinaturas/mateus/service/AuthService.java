@@ -5,6 +5,7 @@ import gestao_de_assinaturas.mateus.dto.request.RegisterRequest;
 import gestao_de_assinaturas.mateus.dto.response.AuthResponse;
 import gestao_de_assinaturas.mateus.entity.User;
 import gestao_de_assinaturas.mateus.repository.UserRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -31,7 +32,10 @@ public class AuthService {
 
     }
 
+    @Transactional
     public AuthResponse login (LoginRequest request) {
+        userRepository.findByEmailIgnoreCase((request.email()));
+
         return null;
     }
 

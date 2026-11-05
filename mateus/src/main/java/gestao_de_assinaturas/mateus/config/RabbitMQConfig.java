@@ -29,7 +29,7 @@ public class RabbitMQConfig {
     }
 
     @Bean
-    public Declarables paymentsDeclarables (@Value("") String exchangeName, @Value("") String queueName, @Value("${}") String routingKey) {
+    public Declarables paymentsDeclarables (@Value("${app.rabbitmq.payments.exchange}") String exchangeName, @Value("${app.rabbitmq.payments.queue}") String queueName, @Value("${app.rabbitmq.payments.routingKey}") String routingKey) {
         DirectExchange exchange = new DirectExchange(exchangeName, true, false);
         Queue queue = QueueBuilder.durable(queueName).build();
         Binding binding = BindingBuilder.bind(queue).to(exchange).with(routingKey);
