@@ -3,6 +3,7 @@ package gestao_de_assinaturas.mateus.service;
 import gestao_de_assinaturas.mateus.dto.request.UserRequest;
 import gestao_de_assinaturas.mateus.dto.response.UserResponse;
 import gestao_de_assinaturas.mateus.entity.User;
+import gestao_de_assinaturas.mateus.enums.PaymentStatus;
 import gestao_de_assinaturas.mateus.enums.UserRole;
 import gestao_de_assinaturas.mateus.exceptions.EmailAlreadyExistsException;
 import gestao_de_assinaturas.mateus.repository.UserRepository;
@@ -31,6 +32,9 @@ public class UserService {
         user.setEmail(request.email());
         user.setRole(UserRole.USER);
         user = userRepository.save(user);
+
+
+
 
         return UserResponse.toResponse(user);
 

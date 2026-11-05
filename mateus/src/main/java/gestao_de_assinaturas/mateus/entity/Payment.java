@@ -1,5 +1,6 @@
 package gestao_de_assinaturas.mateus.entity;
 
+import gestao_de_assinaturas.mateus.enums.PaymentStatus;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -19,5 +20,12 @@ public class Payment {
 
     @Column (name = "updated_at", nullable = false)
     private Instant updatedAt;
+
+    @OneToOne (fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id_id")
+    private User user;
+
+    @Enumerated (EnumType.STRING)
+    private PaymentStatus status;
 
 }
